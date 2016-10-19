@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>#{str.instructorListTitle}</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="contenido">
+			<h2>#{str.instructorListTitle}</h2>
+			<h:form>
+				<p:commandButton value="#{str.buttonAdd}"
+					action="#{instructorBean.agregar()}"></p:commandButton>
+			</h:form>
+			<p:dataTable value="#{instructorBean.instructores}" var="i">
+				<p:column headerText="#{str.action}">
+				<h:form>
+					<h:commandButton value="#{str.buttonEdit}"
+						action="#{instructorBean.editar(i)}"></h:commandButton>
+					</h:form>
+				</p:column>
+				<p:column headerText="#{str.instructorNamePrompt}">
+					<p:outputLabel value="#{i.nombre}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="#{str.instructorSpecialtyPrompt}">
+					<p:outputLabel value="#{i.especialidad}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="#{str.instructorSalaryPrompt}">
+					<p:outputLabel value="#{i.sueldo}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="#{str.instructorNationalityPrompt}">
+					<p:outputLabel value="#{i.nacionalidad}"></p:outputLabel>
+				</p:column>
+				
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

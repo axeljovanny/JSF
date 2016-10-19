@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>#{str.courseFormTitle}</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="contenido">
+			<h2>#{str.courseListTitle}</h2>
+			<h:form>
+				<p:commandButton value="#{str.buttonAdd}"
+					action="#{cursoBean.agregar()}"></p:commandButton>
+			</h:form>
+			<p:dataTable value="#{cursoBean.cursos}" var="c">
+				<p:column headerText="#{str.action}">
+				<h:form>
+					<h:commandButton value="#{str.buttonEdit}"
+						action="#{cursoBean.editar(c)}"></h:commandButton>
+					</h:form>
+				</p:column>
+				<p:column headerText="#{str.courseNameHeader}">
+					<p:outputLabel value="#{c.nombre}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="#{str.coursePlaceHeader}">
+					<p:outputLabel value="#{c.lugar}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="#{str.courseScheduleHeader}">
+					<p:outputLabel value="#{c.horario}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="#{str.courseCategoryHeader}">
+					<p:outputLabel value="#{c.categoria}"></p:outputLabel>
+				</p:column>
+				
+				<p:column headerText="#{str.instructorNameHeader}">
+					<p:outputLabel value="#{c.instructor.nombre}"></p:outputLabel>
+				</p:column>
+				
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

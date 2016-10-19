@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>#{str.courseFormTitle}</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="contenido">
+			<h2>#{str.courseFormHeader}</h2>
+			<p:fieldset legend="#{str.cursoLegendForm}">
+				<h:form>
+					<h:panelGrid columns="4">
+						<p:inputText placeholder="#{str.courseNamePrompt}"
+							style="height:29px" value="#{cursoBean.curso.nombre}"></p:inputText>
+							
+						<p:inputText placeholder="#{str.coursePlacePrompt}"
+							style="height:29px" value="#{cursoBean.curso.lugar}"></p:inputText>
+
+						<p:inputText placeholder="#{str.courseSchedulePrompt}"
+							style="height:29px" value="#{cursoBean.curso.horario}"></p:inputText>
+							
+						<p:inputText placeholder="#{str.courseCategoryPrompt}"
+							style="height:29px" value="#{cursoBean.curso.categoria}"></p:inputText>
+
+						<p:selectOneMenu
+							value="#{cursoBean.curso.instructor.id}"
+							style="height:29px">
+							<f:selectItems value="#{cursoBean.instructores}" var="c"
+								itemLabel="#{c.nombre}" itemValue="#{c.id}"></f:selectItems>
+
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<p:commandButton value="#{str.buttonSave}"
+						action="#{cursoBean.guardar()}"></p:commandButton>
+					<p:commandButton value="#{str.buttonDelete}"
+						action="#{cursoBean.eliminar()}"></p:commandButton>
+					<p:commandButton value="#{str.buttonCancel}"
+						action="#{cursoBean.cancelar()}"></p:commandButton>
+				</h:form>
+			</p:fieldset>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
